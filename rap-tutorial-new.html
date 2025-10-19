@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>说唱教程 - 说唱教学网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000000;
+            color: #E0FFFF;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 导航菜单样式 */
+        .main { display: flex; flex-direction: column; gap: 0.5em; width: 55px; height: 55px; background-color: rgba(124, 124, 124, 0.671); border-radius: 4px; position: fixed; top: 20px; left: 20px; z-index: 1001; transition: all 0.3s ease; }
+        .main:hover { width: 200px; height: auto; }
+        .main .menu-title { color: #E0FFFF; font-size: 14px; font-weight: 600; padding: 10px; cursor: default; user-select: none; }
+        .main .inp { width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; cursor: pointer; z-index: 1; }
+        .arrow { position: relative; width: 100%; height: 30px; }
+        .arrow::before, .arrow::after { content: ""; position: absolute; width: 20px; height: 2px; background-color: #E0FFFF; border-radius: 2px; transition: all 0.3s ease; top: 14px; }
+        .arrow::before { left: 10px; transform: rotate(-45deg); transform-origin: right; }
+        .arrow::after { right: 10px; transform: rotate(45deg); transform-origin: left; }
+        .inp:checked ~ .arrow::before { left: 7px; transform: rotate(45deg); }
+        .inp:checked ~ .arrow::after { right: 7px; transform: rotate(-45deg); }
+        .menu-container { width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background-color: #000000; border: 1px solid rgba(224, 255, 255, 0.2); border-radius: 4px; margin-top: 5px; }
+        .main:hover .menu-container { max-height: 300px; }
+        .menu-container a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #E0FFFF; text-decoration: none; font-size: 14px; transition: all 0.2s ease; border-bottom: 1px solid rgba(224, 255, 255, 0.1); }
+        .menu-container a:last-child { border-bottom: none; }
+        .menu-container a:hover { background-color: rgba(224, 255, 255, 0.1); padding-left: 20px; }
+
+        /* 返回按钮样式 */
+        .back-button { width: 50px; height: 50px; border-radius: 50%; background-color: rgb(20, 20, 20); border: none; font-weight: 600; display: flex; align-items: center; justify-content: center; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164); cursor: pointer; transition-duration: .3s; overflow: hidden; position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .svgIcon { width: 20px; transition-duration: .3s; }
+        .svgIcon path { fill: white; }
+        .back-button:hover { background-color: rgb(69, 200, 255); }
+
+        /* 页面容器 */
+        #app {
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 50px;
+            color: #E0FFFF;
+            text-shadow: 0 0 20px rgba(224, 255, 255, 0.3);
+        }
+
+        /* Tailwind CSS 替代样式 */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .justify-between { justify-content: space-between; }
+        .gap-3 { gap: 0.75rem; }
+        .relative { position: relative; }
+        .text-white { color: white; }
+        .text-base { font-size: 1rem; line-height: 1.5rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .font-normal { font-weight: 400; }
+        .leading-5 { line-height: 1.25rem; }
+        .opacity-90 { opacity: 0.9; }
+        .m-0 { margin: 0; }
+        .mb-1 { margin-bottom: 0.25rem; }
+    </style>
+</head>
+<body>
+    <!-- 导航菜单 -->
+    <label class="main">
+        <div class="menu-title">Menu</div>
+        <input class="inp" checked type="checkbox" />
+        <div class="arrow"></div>
+        <section class="menu-container">
+            <a href="/index.html">🏠 首页</a>
+            <a href="/rap-tutorial.html">📚 说唱教程</a>
+            <a href="/rap-practice.html">🎯 节奏练习</a>
+            <a href="/rap-songs.html">🎵 歌曲库</a>
+            <a href="/mixing-tutorial.html">🎚️ 混音教程</a>
+            <a href="/equipment-recommendation.html">🎙️ 设备推荐</a>
+        </section>
+    </label>
+
+    <!-- 返回按钮 -->
+    <button class="back-button" onclick="window.history.back()">
+        <svg class="svgIcon" viewBox="0 0 384 512">
+            <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
+        </svg>
+    </button>
+
+    <!-- Vue 应用容器 -->
+    <div id="app"></div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+        import gsap from 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm';
+
+        // 注入 gsap 到全局
+        window.gsap = gsap;
+
+        const cardData = [
+            { color: '#000C00', title: '说唱基础知识', description: '了解说唱的起源、文化和基本概念', label: '基础' },
+            { color: '#000C00', title: '韵律与节奏', description: '掌握说唱的节奏感和韵脚技巧', label: '节奏' },
+            { color: '#000C00', title: 'Flow 技巧', description: '学习不同的说唱流派和技巧', label: '技巧' },
+            { color: '#000C00', title: '歌词创作', description: '创作有深度和个性的说唱歌词', label: '创作' },
+            { color: '#000C00', title: '舞台表现力', description: '提升现场表演的感染力和互动性', label: '表演' },
+            { color: '#000C00', title: '说唱风格', description: '探索不同的说唱风格和流派特点', label: '风格' }
+        ];
+
+        const app = createApp({
+            data() {
+                return {
+                    pageTitle: '说唱教程',
+                    cards: cardData
+                };
+            },
+            template: `
+                <div>
+                    <h1>{{ pageTitle }}</h1>
+                    <div id="bento-container"></div>
+                </div>
+            `
+        });
+
+        app.mount('#app');
+
+        // 动态导入 MagicBento 组件
+        import('./src/components/MagicBento.vue?t=' + Date.now())
+            .then(module => {
+                const MagicBento = module.default;
+                const bentoApp = createApp({
+                    components: { MagicBento },
+                    data() {
+                        return { cards: cardData };
+                    },
+                    template: `<MagicBento :cards="cards" :enable-stars="true" :enable-spotlight="true" :enable-border-glow="true" />`
+                });
+                bentoApp.mount('#bento-container');
+            })
+            .catch(err => {
+                console.error('Failed to load MagicBento component:', err);
+                // 降级方案：显示简单的卡片布局
+                document.getElementById('bento-container').innerHTML = `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px;">
+                        ${cardData.map(card => `
+                            <div style="background: ${card.color}; border: 1px solid rgba(224,255,255,0.2); border-radius: 20px; padding: 30px; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="color: #E0FFFF; font-size: 14px;">${card.label}</div>
+                                <div>
+                                    <h3 style="color: white; margin: 0 0 10px 0; font-size: 18px;">${card.title}</h3>
+                                    <p style="color: rgba(255,255,255,0.9); font-size: 14px; margin: 0;">${card.description}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://jsrepo.com/schema.json",
+  "paths": {
+    "ui": "./components"
+  },
+  "registries": {
+    "vue-bits": "https://vue-bits.dev"
+  }
+}

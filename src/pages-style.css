@@ -1,0 +1,454 @@
+.tool-stack ul li h4 {
+    font-size: 1.08rem;
+    letter-spacing: 0.03em;
+}
+
+.tool-stack ul li p {
+    color: rgba(200, 226, 255, 0.72);
+    line-height: 1.65;
+}
+.page-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 4vw, 36px);
+    margin-top: clamp(48px, 8vw, 72px);
+}
+
+.page-section.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 36px);
+    align-items: start;
+}
+
+.split-panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 3vw, 28px);
+}
+
+.tool-stack {
+    position: relative;
+    padding: clamp(24px, 4vw, 32px);
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(12, 20, 42, 0.9), rgba(14, 32, 60, 0.82));
+    border: 1px solid rgba(104, 164, 255, 0.2);
+    box-shadow: 0 18px 42px rgba(4, 12, 30, 0.6);
+    overflow: hidden;
+}
+
+.tool-stack::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(92, 244, 255, 0.22), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.tool-stack:hover::after {
+    opacity: 1;
+}
+
+.tool-stack h3 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-bottom: clamp(18px, 3vw, 24px);
+    letter-spacing: -0.01em;
+}
+
+.tool-stack ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.6vw, 22px);
+    padding: 0;
+    margin: 0;
+}
+
+.tool-stack li {
+    position: relative;
+    padding-left: 22px;
+}
+
+.tool-stack li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #63f5ff, #4d5cff);
+    box-shadow: 0 0 12px rgba(99, 243, 255, 0.4);
+}
+
+.tool-stack h4 {
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
+.tool-stack p {
+    color: rgba(196, 220, 255, 0.7);
+    line-height: 1.65;
+    margin-top: 6px;
+}
+
+.page-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.visual-frame.compact {
+    padding: clamp(10px, 2vw, 14px);
+}
+
+.page-section + .page-section {
+    margin-top: clamp(56px, 10vw, 88px);
+}
+
+@media (max-width: 1080px) {
+    .page-section.split {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-stack {
+        order: -1;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-header {
+        grid-template-columns: 1fr;
+        padding: clamp(24px, 8vw, 36px);
+    }
+
+    .page-metrics {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .page-section {
+        margin-top: clamp(36px, 12vw, 60px);
+    }
+}
+/* 通用页面样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    color: #E0FFFF;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* 页面包装器 */
+.page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+/* 内容包装器 */
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 返回按钮样式 */
+.back-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-button .svgIcon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.back-button .svgIcon path {
+    fill: white;
+}
+
+.back-button:hover {
+    background-color: rgb(69, 200, 255);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(69, 200, 255, 0.4);
+}
+
+/* 页面标题 */
+.page-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 0 0 40px;
+    color: #E0FFFF;
+    text-shadow: 0 0 20px rgba(224, 255, 255, 0.3);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00C853, transparent);
+    border-radius: 2px;
+}
+
+/* Tailwind 风格工具类 */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.justify-between { justify-content: space-between; }
+.gap-3 { gap: 0.75rem; }
+.relative { position: relative; }
+.text-white { color: white; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.font-normal { font-weight: 400; }
+.leading-5 { line-height: 1.25rem; }
+.opacity-90 { opacity: 0.9; }
+.m-0 { margin: 0; }
+.mb-1 { margin-bottom: 0.25rem; }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding-top: 100px;
+    }
+
+    .content-wrapper {
+        padding: 0 15px;
+    }
+
+    .page-title {
+        margin-bottom: 30px;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        padding-bottom: 15px;
+    }
+    
+    .page-title::after {
+        width: 40px;
+        height: 2px;
+    }
+
+    .back-button {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .back-button .svgIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Lightning-inspired page layout */
+.page-wrapper {
+    background: radial-gradient(circle at top, rgba(6, 8, 22, 0.92) 0%, rgba(2, 4, 18, 0.96) 45%, #010109 100%);
+}
+
+.page-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center;
+    gap: clamp(24px, 6vw, 48px);
+    padding: clamp(32px, 6vw, 56px);
+    border-radius: clamp(24px, 4vw, 32px);
+    background: linear-gradient(130deg, rgba(22, 18, 46, 0.92), rgba(16, 42, 82, 0.88));
+    border: 1px solid rgba(106, 178, 255, 0.18);
+    box-shadow: 0 24px 60px rgba(6, 12, 32, 0.55), inset 0 0 0 1px rgba(132, 0, 255, 0.22);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::after {
+    content: "";
+    position: absolute;
+    inset: -20% 10% auto 40%;
+    height: clamp(280px, 35vw, 400px);
+    background: radial-gradient(circle at 50% 20%, rgba(99, 243, 255, 0.32), transparent 70%);
+    filter: blur(10px);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.page-header h1 {
+    font-size: clamp(2.6rem, 6vw, 3.4rem);
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, #9bc9ff 0%, #5cf0ff 45%, #4d5cff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: clamp(12px, 3vw, 18px);
+}
+
+.page-intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2.8vw, 20px);
+    color: rgba(212, 235, 255, 0.8);
+    font-size: clamp(1rem, 2.2vw, 1.1rem);
+    line-height: 1.9;
+}
+
+.page-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    margin-top: clamp(24px, 4vw, 32px);
+}
+
+.metric-pulse {
+    padding: clamp(16px, 3vw, 22px);
+    border-radius: 18px;
+    background: rgba(8, 12, 26, 0.82);
+    border: 1px solid rgba(104, 170, 255, 0.24);
+    box-shadow: 0 12px 36px rgba(10, 14, 28, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-pulse::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(99, 243, 255, 0.35), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.metric-pulse:hover::before {
+    opacity: 1;
+}
+
+.metric-pulse strong {
+    display: block;
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    letter-spacing: 0.06em;
+}
+
+.metric-pulse span {
+    display: block;
+    margin-top: 6px;
+    color: rgba(184, 214, 255, 0.66);
+    font-size: 0.92rem;
+}
+
+.section-title {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 760px;
+    margin: 0 auto clamp(28px, 5vw, 38px);
+    text-align: center;
+}
+
+.section-title span {
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(120, 158, 255, 0.7);
+}
+
+.section-title h2 {
+    font-size: clamp(2.1rem, 4.8vw, 2.8rem);
+    letter-spacing: -0.015em;
+}
+
+.section-title p {
+    color: rgba(204, 228, 255, 0.72);
+    line-height: 1.7;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(18px, 2.8vw, 28px);
+}
+
+.content-card {
+    position: relative;
+    padding: clamp(22px, 3.2vw, 26px);
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(10, 18, 38, 0.88), rgba(18, 42, 70, 0.78));
+    border: 1px solid rgba(104, 164, 255, 0.18);
+    box-shadow: 0 16px 34px rgba(4, 8, 22, 0.58);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: transform 0.36s ease, border-color 0.36s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(128, 186, 255, 0.4);
+}
+
+.content-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(92, 244, 255, 0.25), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.content-card:hover::after {
+    opacity: 1;
+}
+
+.content-card h3 {
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+}
+
+.content-card p {
+    color: rgba(198, 224, 255, 0.74);
+    line-height: 1.7;
+}
+
+.content-tag {
+    align-self: flex-start;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(92, 140, 255, 0.45), rgba(92, 244, 255, 0.32));
+    color: #dbf4ff;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+}
